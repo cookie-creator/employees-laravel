@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('salary_types', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('salary_id')->constrained();
             $table->string('title');
             $table->boolean('type');
             $table->timestamps();

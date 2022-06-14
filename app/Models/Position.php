@@ -19,9 +19,9 @@ class Position extends Model
         return $this->belongsTo(Department::class);
     }
 
-    public function salaries()
+    public function salary()
     {
-        return $this->hasMany(Salary::class);
+        return $this->hasOne(Salary::class);
     }
 
 }

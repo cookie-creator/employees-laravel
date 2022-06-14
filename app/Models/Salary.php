@@ -11,7 +11,8 @@ class Salary extends Model
 
     protected $fillable = [
         'title',
-        'amount'
+        'amount',
+        'salary_types_id'
     ];
 
     public function position()
