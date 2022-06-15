@@ -22,6 +22,6 @@ class Salary extends Model
 
     public function salary_types()
     {
-        return $this->hasMany(SalaryTypes::class);
+        return $this->belongsTo(SalaryTypes::class);
     }
 }

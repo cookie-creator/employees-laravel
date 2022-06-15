@@ -21,6 +21,8 @@ Route::get('/', function () {
     return view('employee');
 })->middleware(['auth'])->name('employee');*/
 
+Route::get('/test', [\App\Http\Controllers\TestController::class, 'index'])->name('test.seed');
+
 Route::middleware(['auth'])->group(function ()
 {
     Route::get('/employes', [\App\Http\Controllers\EmployesController::class, 'index'])->name('employes');

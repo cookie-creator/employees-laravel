@@ -33,7 +33,7 @@ class ProgrammersDepartmentPerHourSeeder extends Seeder
 
         // Middle
         $middle = new Position();
-        $middle->title = 'Middle dev per hour ';
+        $middle->title = 'Middle dev per hour';
         $middle->description = 'Middle dev per hour ';
         $department->positions()->save($middle);
 

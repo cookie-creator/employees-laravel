@@ -13,6 +13,8 @@ class EmployesController extends Controller
 
     public function index()
     {
+        $posts = EmployesController::latest()
+            ->paginate($perPage = 30, $columns = ['*'], $pageName = 'posts');
         return view('pages.employes');
     }
 }

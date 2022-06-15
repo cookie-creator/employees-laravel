@@ -18,10 +18,7 @@ class QAPerHourDepartmentSeeder extends Seeder
     public function run()
     {
         // SEO
-        $qaDepartment = new Department();
-        $qaDepartment->title = 'QA';
-        $qaDepartment->description = 'QA Department';
-        $qaDepartment->save();
+        $qaDepartment = Department::where('title','QA')->first();
 
         $qaManager = new Position();
         $qaManager->title = 'QA Manager per hour';

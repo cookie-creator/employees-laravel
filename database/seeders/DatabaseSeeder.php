@@ -21,7 +21,10 @@ class DatabaseSeeder extends Seeder
             QADepartmentSeeder::class,
             QAPerHourDepartmentSeeder::class,
             ProgrammersDepartmentMonthlySeeder::class,
-            ProgrammersDepartmentPerHourSeeder::class
+            ProgrammersDepartmentPerHourSeeder::class,
+            SEOEmployeeSeeder::class,
+            QAEmploeeSeeder::class,
+            ProgrammersEmploeeSeeder::class
         ]);
 
         // \App\Models\User::factory(10)->create();
