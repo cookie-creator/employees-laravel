@@ -11,17 +11,11 @@ class Salary extends Model
 
     protected $fillable = [
         'title',
-        'amount',
-        'salary_types_id'
+        'description',
     ];
 
     public function position()
     {
         return $this->belongsTo(Position::class);
-    }
-
-    public function salary_types()
-    {
-        return $this->belongsTo(SalaryTypes::class);
     }
 }

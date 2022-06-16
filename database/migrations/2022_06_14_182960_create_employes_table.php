@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('department_id')->constrained();
             $table->foreignId('position_id')->constrained();
             $table->foreignId('salary_id')->constrained();
+            $table->foreignId('employee_salary_id')->constrained();
 
             $table->string('firstname');
             $table->string('surname');

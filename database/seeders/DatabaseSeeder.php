@@ -17,13 +17,16 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             SalaryTypesSeeder::class,
+
             SEODepartmentSeeder::class,
+            SEOEmployeeSeeder::class,
+
             QADepartmentSeeder::class,
             QAPerHourDepartmentSeeder::class,
+            QAEmploeeSeeder::class,
+
             ProgrammersDepartmentMonthlySeeder::class,
             ProgrammersDepartmentPerHourSeeder::class,
-            SEOEmployeeSeeder::class,
-            QAEmploeeSeeder::class,
             ProgrammersEmploeeSeeder::class
         ]);
 

@@ -85,9 +85,9 @@
                                     {{ $employee->position->title }}
                                 </td>
                                 <td class="p-3 text-sm text-gray-700">
-                                    {{ $employee->salary->amount }}
+                                    {{ $employee->employee_salary->amount }}
 
-                                    @if ($employee->salary->salary_types->type == 0) / hour @endif
+                                    @if ($employee->employee_salary->salary_types->type == 0) / hour @endif
                                 </td>
                                 <td class="p-3 text-sm text-gray-700">
                                     <div class="">

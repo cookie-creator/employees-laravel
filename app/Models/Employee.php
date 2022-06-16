@@ -35,6 +35,11 @@ class Employee extends Model
         return $this->belongsTo(Salary::class);
     }
 
+    public function employee_salary()
+    {
+        return $this->belongsTo(EmployeeSalary::class);
+    }
+
     protected function day(): Attribute
     {
         return Attribute::make(

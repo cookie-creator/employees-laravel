@@ -27,8 +27,7 @@ class ProgrammersDepartmentPerHourSeeder extends Seeder
 
         $seniorSalary = new Salary();
         $seniorSalary->title = 'Senior dev per hour Salary';
-        $seniorSalary->amount = '300';
-        $seniorSalary->salary_types_id = 1;
+        $seniorSalary->description = 'Senior dev per hour Salary description';
         $senior->salary()->save($seniorSalary);
 
         // Middle
@@ -39,8 +38,7 @@ class ProgrammersDepartmentPerHourSeeder extends Seeder
 
         $middleSalary = new Salary();
         $middleSalary->title = 'Middle per hour Salary';
-        $middleSalary->amount = '200';
-        $middleSalary->salary_types_id = 1;
+        $middleSalary->description = 'Middle per hour Salary description';
         $middle->salary()->save($middleSalary);
 
         // Junior
@@ -51,8 +49,7 @@ class ProgrammersDepartmentPerHourSeeder extends Seeder
 
         $juniorSalary = new Salary();
         $juniorSalary->title = 'Junior per hour Salary';
-        $juniorSalary->amount = '100';
-        $juniorSalary->salary_types_id = 1;
+        $juniorSalary->description = 'Junior per hour Salary description';
         $junior->salary()->save($juniorSalary);
     }
 }

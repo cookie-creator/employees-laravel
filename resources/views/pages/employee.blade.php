@@ -17,7 +17,7 @@
                             <div class="col-span-6">
                                 <div class="mb-5">
                                     <label for="firstname" class="block text-md font-bold text-gray-700">First name</label>
-                                    <input type="text" name="firstname" id="firstname" value="{{ $employee->firstname }}" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                    <input type="text" name="firstname" id="firstname" value="{{ $employee->firstname }}" autocomplete="firstname" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                 </div>
                                 @error('firstname')
                                     <div class="text-sm text-red-500 py-1">{{ $message }}</div>
@@ -25,7 +25,7 @@
 
                                 <div class="mb-5">
                                     <label for="surname" class="block text-md font-bold text-gray-700">Surname</label>
-                                    <input type="text" name="surname" id="surname" value="{{ $employee->surname }}" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                    <input type="text" name="surname" id="surname" value="{{ $employee->surname }}" autocomplete="surname" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                 </div>
                                 @error('surname')
                                     <div class="text-sm text-red-500 py-1">{{ $message }}</div>
@@ -33,7 +33,7 @@
 
                                 <div class="mb-5">
                                     <label for="lastname" class="block text-md font-bold text-gray-700">Lastname</label>
-                                    <input type="text" name="lastname" id="lastname" value="{{ $employee->lastname }}" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                    <input type="text" name="lastname" id="lastname" value="{{ $employee->lastname }}" autocomplete="lastname" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                 </div>
                                 @error('lastname')
                                     <div class="text-sm text-red-500 py-1">{{ $message }}</div>
@@ -104,10 +104,10 @@
 
                             <select id="salaryType" name="salaryType" autocomplete="salaryType" class="mt-1 inline-block  w-50 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 @foreach($salaryTypes as $type)
-                                    <option @if($type->id == $employee->salary->salary_types->id) selected @endif value="{{$type->id}}">{{$type->title}}</option>
+                                    <option @if($type->id == $employee->employee_salary->salary_types->id) selected @endif value="{{$type->id}}">{{$type->title}}</option>
                                 @endforeach
                             </select>
-                            <input type="text" name="salaryAmount" id="salaryAmount" value="{{ $employee->salary->amount }}" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 ineline-block shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                            <input type="text" name="salaryAmount" id="salaryAmount" value="{{ $employee->employee_salary->amount }}" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 ineline-block shadow-sm sm:text-sm border-gray-300 rounded-md" />
                             @error('salaryAmount')
                                 <div class="text-sm text-red-500 py-1">{{ $message }}</div>
                             @enderror

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Department;
 use App\Models\Employee;
+use App\Models\EmployeeSalary;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -16,9 +17,15 @@ class QAEmploeeSeeder extends Seeder
      */
     public function run()
     {
+
         $qaDepartment = Department::where('title', 'QA')->first();
         $qaQAManagerPosition = $qaDepartment->positions->where('title','QA Manager')->first();
         $seoQAManagerSalary = $qaQAManagerPosition->salary;
+
+        $salary = new EmployeeSalary();
+        $salary->amount = '4000';
+        $salary->salary_types_id = 2;
+        $salary->save();
 
         $seoManagerEmployee = new Employee();
         $seoManagerEmployee->firstname = 'Karl';
@@ -28,7 +35,13 @@ class QAEmploeeSeeder extends Seeder
         $seoManagerEmployee->department_id = $qaDepartment->id;
         $seoManagerEmployee->position_id = $qaQAManagerPosition->id;
         $seoManagerEmployee->salary_id = $seoQAManagerSalary->id;
+        $seoManagerEmployee->employee_salary_id = $salary->id;
         $seoManagerEmployee->save();
+
+        $salary = new EmployeeSalary();
+        $salary->amount = '3000';
+        $salary->salary_types_id = 2;
+        $salary->save();
 
         $seoManagerEmployee = new Employee();
         $seoManagerEmployee->firstname = 'David';
@@ -38,6 +51,7 @@ class QAEmploeeSeeder extends Seeder
         $seoManagerEmployee->department_id = $qaDepartment->id;
         $seoManagerEmployee->position_id = $qaQAManagerPosition->id;
         $seoManagerEmployee->salary_id = $seoQAManagerSalary->id;
+        $seoManagerEmployee->employee_salary_id = $salary->id;
         $seoManagerEmployee->save();
 
         // Monthly
@@ -46,6 +60,11 @@ class QAEmploeeSeeder extends Seeder
         $salary = $position->salary;
         for ($i=1; $i<=10; $i++)
         {
+            $employeeSalary = new EmployeeSalary();
+            $employeeSalary->amount = '3000';
+            $employeeSalary->salary_types_id = 2;
+            $employeeSalary->save();
+
             $data[] = [
                 'firstname' => 'Erin'.$i,
                 'surname' => 'Moriarty'.$i,
@@ -54,6 +73,7 @@ class QAEmploeeSeeder extends Seeder
                 'department_id' => $department->id,
                 'position_id' => $position->id,
                 'salary_id' => $salary->id,
+                'employee_salary_id' => $employeeSalary->id,
             ];
         }
         $chunks = array_chunk($data, 5000);
@@ -62,12 +82,17 @@ class QAEmploeeSeeder extends Seeder
             Employee::insert($chunk);
         }
 
-        info($department->positions);
         // per hour
         $position = $department->positions->where('title','QA Employee per hour')->first();
+        info($department->positions);
         $salary = $position->salary;
         for ($i=1; $i<=10; $i++)
         {
+            $employeeSalary = new EmployeeSalary();
+            $employeeSalary->amount = '300';
+            $employeeSalary->salary_types_id = 1;
+            $employeeSalary->save();
+
             $data[] = [
                 'firstname' => 'John'.$i,
                 'surname' => 'Doe'.$i,
@@ -76,6 +101,7 @@ class QAEmploeeSeeder extends Seeder
                 'department_id' => $department->id,
                 'position_id' => $position->id,
                 'salary_id' => $salary->id,
+                'employee_salary_id' => $employeeSalary->id,
             ];
         }
         $chunks = array_chunk($data, 5000);
