@@ -30,8 +30,7 @@ class QADepartmentSeeder extends Seeder
 
         $qaManagerSalary = new Salary();
         $qaManagerSalary->title = 'QA Manager Salary';
-        $qaManagerSalary->amount = '4000';
-        $qaManagerSalary->salary_types_id = 2;
+        $qaManagerSalary->description = 'QA Manager Salary description';
         $qaManager->salary()->save($qaManagerSalary);
 
         $qaEmployee = new Position();
@@ -41,8 +40,7 @@ class QADepartmentSeeder extends Seeder
 
         $qaEmployeeSalary = new Salary();
         $qaEmployeeSalary->title = 'SEO Employee Salary';
-        $qaEmployeeSalary->amount = '1000';
-        $qaEmployeeSalary->salary_types_id = 2;
+        $qaEmployeeSalary->description = 'SEO Employee Salary description';
         $qaEmployee->salary()->save($qaEmployeeSalary);
     }
 }

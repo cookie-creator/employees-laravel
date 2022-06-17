@@ -30,8 +30,7 @@ class SEODepartmentSeeder extends Seeder
 
         $seoManagerSalary = new Salary();
         $seoManagerSalary->title = 'SEO Manager Salary';
-        $seoManagerSalary->amount = '5000';
-        $seoManagerSalary->salary_types_id = 2;
+        $seoManagerSalary->description = 'SEO Manager Salary description';
         $seoManager->salary()->save($seoManagerSalary);
 
         $seoEmployee = new Position();
@@ -41,8 +40,7 @@ class SEODepartmentSeeder extends Seeder
 
         $seoEmployeeSalary = new Salary();
         $seoEmployeeSalary->title = 'SEO Employee Salary';
-        $seoEmployeeSalary->amount = '80';
-        $seoEmployeeSalary->salary_types_id = 1;
+        $seoEmployeeSalary->description = 'SEO Employee Salary description';
         $seoEmployee->salary()->save($seoEmployeeSalary);
     }
 }

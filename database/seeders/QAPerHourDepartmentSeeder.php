@@ -27,8 +27,7 @@ class QAPerHourDepartmentSeeder extends Seeder
 
         $qaManagerSalary = new Salary();
         $qaManagerSalary->title = 'QA Manager per hour Salary';
-        $qaManagerSalary->amount = '400';
-        $qaManagerSalary->salary_types_id = 1;
+        $qaManagerSalary->description = 'QA Manager per hour Salary description';
         $qaManager->salary()->save($qaManagerSalary);
 
         $qaEmployee = new Position();
@@ -38,8 +37,7 @@ class QAPerHourDepartmentSeeder extends Seeder
 
         $qaEmployeeSalary = new Salary();
         $qaEmployeeSalary->title = 'SEO Employee per hour Salary';
-        $qaEmployeeSalary->amount = '100';
-        $qaEmployeeSalary->salary_types_id = 1;
+        $qaEmployeeSalary->description = 'SEO Employee per hour Salary description';
         $qaEmployee->salary()->save($qaEmployeeSalary);
     }
 }

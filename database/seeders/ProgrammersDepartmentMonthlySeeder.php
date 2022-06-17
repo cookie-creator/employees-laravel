@@ -30,8 +30,7 @@ class ProgrammersDepartmentMonthlySeeder extends Seeder
 
         $teamLeadSalary = new Salary();
         $teamLeadSalary->title = 'Team Lead Salary';
-        $teamLeadSalary->amount = '5000';
-        $teamLeadSalary->salary_types_id = 2;
+        $teamLeadSalary->description = 'Team Lead Salary description';
         $teamLead->salary()->save($teamLeadSalary);
 
         // Senior
@@ -42,8 +41,7 @@ class ProgrammersDepartmentMonthlySeeder extends Seeder
 
         $seniorSalary = new Salary();
         $seniorSalary->title = 'Senior Salary';
-        $seniorSalary->amount = '3000';
-        $seniorSalary->salary_types_id = 2;
+        $seniorSalary->description = 'Senior Salary description';
         $senior->salary()->save($seniorSalary);
 
         // Middle
@@ -54,8 +52,7 @@ class ProgrammersDepartmentMonthlySeeder extends Seeder
 
         $middleSalary = new Salary();
         $middleSalary->title = 'Middle Salary';
-        $middleSalary->amount = '2000';
-        $middleSalary->salary_types_id = 2;
+        $middleSalary->description = 'Middle Salary description';
         $middle->salary()->save($middleSalary);
 
         // Junior
@@ -66,8 +63,7 @@ class ProgrammersDepartmentMonthlySeeder extends Seeder
 
         $juniorSalary = new Salary();
         $juniorSalary->title = 'Junior Salary';
-        $juniorSalary->amount = '1000';
-        $juniorSalary->salary_types_id = 2;
+        $juniorSalary->description = 'Junior Salary description';
         $junior->salary()->save($juniorSalary);
     }
 }

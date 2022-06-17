@@ -13,17 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('employes', function (Blueprint $table) {
+        Schema::create('employee_salaries', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('department_id')->constrained();
-            $table->foreignId('position_id')->constrained();
-            $table->foreignId('salary_id')->constrained();
-
-            $table->string('firstname');
-            $table->string('surname');
-            $table->string('lastname');
-            $table->date('date_of_birth');
-
+            $table->foreignId('salary_types_id')->constrained();
+            $table->float('amount');
             $table->timestamps();
         });
     }
@@ -35,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('employes');
+        Schema::dropIfExists('employee_salaries');
     }
 };
