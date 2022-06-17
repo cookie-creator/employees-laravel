@@ -25,16 +25,16 @@ Route::get('/test', [\App\Http\Controllers\TestController::class, 'index'])->nam
 
 Route::middleware(['auth'])->group(function ()
 {
-    Route::get('/employes', [\App\Http\Controllers\EmployesController::class, 'index'])->name('employes');
-    Route::get('/employes/{department_id}', [\App\Http\Controllers\DepartmentsController::class, 'index'])->name('employes.department');
+    Route::get('/employees', [\App\Http\Controllers\EmployeesController::class, 'index'])->name('employees');
+    Route::get('/employees/{department_id}', [\App\Http\Controllers\DepartmentsController::class, 'index'])->name('employees.department');
 
 
-    Route::post('/employee/store', [\App\Http\Controllers\EmployesController::class, 'store'])->name('employee.store');
-    Route::post('/employee/{id}/update', [\App\Http\Controllers\EmployesController::class, 'update'])->name('employee.update');
-    Route::post('/employee/{id}/delete', [\App\Http\Controllers\EmployesController::class, 'destroy'])->name('employee.delete');
-    Route::get('/employee/{id}/edit', [\App\Http\Controllers\EmployesController::class, 'edit'])->name('employee.edit');
-    Route::get('/employee/create', [\App\Http\Controllers\EmployesController::class, 'create'])->name('employee.create');
-    Route::get('/employee/{id}', [\App\Http\Controllers\EmployesController::class, 'show'])->name('employee.show');
+    Route::post('/employee/store', [\App\Http\Controllers\EmployeesController::class, 'store'])->name('employee.store');
+    Route::post('/employee/{employee_id}/update', [\App\Http\Controllers\EmployeesController::class, 'update'])->name('employee.update');
+    Route::get('/employee/{employee_id}/delete', [\App\Http\Controllers\EmployeesController::class, 'destroy'])->name('employee.destroy');
+    Route::get('/employee/{employee_id}/edit', [\App\Http\Controllers\EmployeesController::class, 'edit'])->name('employee.edit');
+    Route::get('/employee/create', [\App\Http\Controllers\EmployeesController::class, 'create'])->name('employee.create');
+    Route::get('/employee/{employee_id}', [\App\Http\Controllers\EmployeesController::class, 'show'])->name('employee.show');
 
     Route::get('/departments', [\App\Http\Controllers\DepartmentsController::class, 'list'])->name('departments');
     Route::get('/department/create', [\App\Http\Controllers\DepartmentsController::class, 'create'])->name('department.create');
@@ -56,6 +56,10 @@ Route::middleware(['auth'])->group(function ()
     Route::post('/salary/{salary_id}/update', [\App\Http\Controllers\SalaryController::class, 'update'])->name('salary.update');
     Route::get('/salary/{salary_id}/delete', [\App\Http\Controllers\SalaryController::class, 'destroy'])->name('salary.destroy');
     Route::get('/salary/{salary_id}', [\App\Http\Controllers\SalaryController::class, 'edit'])->name('salary.edit');
+
+    Route::get('/data', [\App\Http\Controllers\DataController::class, 'index'])->name('data');
+    Route::post('/data/import', [\App\Http\Controllers\DataController::class, 'import'])->name('data.import');
+    Route::get('/data/export', [\App\Http\Controllers\DataController::class, 'export'])->name('data.export');
 });
 
 require __DIR__.'/auth.php';

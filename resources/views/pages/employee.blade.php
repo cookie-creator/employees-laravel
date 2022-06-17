@@ -11,7 +11,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
 
-                    <form method="POST" action="{{ route('employee.update', ['id' => $employee->id]) }}">
+                    <form method="POST" action="{{ route('employee.update', ['employee_id' => $employee->id]) }}">
                         {{ csrf_field() }}
                         <div class="grid grid-cols-12 gap-10">
                             <div class="col-span-6">
@@ -40,6 +40,10 @@
                                 @enderror
                             </div>
                             <div class="col-span-6">
+                                <div class="text-md text-red-500 py-1">You can remove this Employee</div>
+                                <a href="{{ route('employee.destroy', ['employee_id' => $employee->id]) }}" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2">
+                                    Delete
+                                </a>
                             </div>
                         </div>
 
@@ -116,7 +120,7 @@
                         <div class="text-left">
                             <button type="submit" class="inline-flex justify-start py-2 px-4 mr-5 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
 
-                            <a href="{{ route('employes') }}" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-300 hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2">
+                            <a href="{{ route('employees') }}" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-300 hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2">
                                 Cancel
                             </a>
                         </div>

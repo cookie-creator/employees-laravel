@@ -16,18 +16,15 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UserSeeder::class,
-            SalaryTypesSeeder::class,
-
-            SEODepartmentSeeder::class,
-            SEOEmployeeSeeder::class,
-
-            QADepartmentSeeder::class,
-            QAPerHourDepartmentSeeder::class,
-            QAEmploeeSeeder::class,
-
-            ProgrammersDepartmentMonthlySeeder::class,
-            ProgrammersDepartmentPerHourSeeder::class,
-            ProgrammersEmploeeSeeder::class
+            //SalaryTypesSeeder::class,
+            //SEODepartmentSeeder::class,
+            //SEOEmployeeSeeder::class,
+            //QADepartmentSeeder::class,
+            //QAPerHourDepartmentSeeder::class,
+            //QAEmploeeSeeder::class,
+            //ProgrammersDepartmentMonthlySeeder::class,
+            //ProgrammersDepartmentPerHourSeeder::class,
+            //ProgrammersEmploeeSeeder::class
         ]);
 
         // \App\Models\User::factory(10)->create();

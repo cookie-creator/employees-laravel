@@ -20,7 +20,7 @@ class QAEmploeeSeeder extends Seeder
 
         $qaDepartment = Department::where('title', 'QA')->first();
         $qaQAManagerPosition = $qaDepartment->positions->where('title','QA Manager')->first();
-        $seoQAManagerSalary = $qaQAManagerPosition->salary;
+        $seoQAManagerSalary = $qaQAManagerPosition->salary->first();
 
         $salary = new EmployeeSalary();
         $salary->amount = '4000';
@@ -57,7 +57,7 @@ class QAEmploeeSeeder extends Seeder
         // Monthly
         $department = Department::where('title', 'QA')->first();
         $position = $department->positions->where('title','QA Employee')->first();
-        $salary = $position->salary;
+        $salary = $position->salary->first();
         for ($i=1; $i<=10; $i++)
         {
             $employeeSalary = new EmployeeSalary();
@@ -82,10 +82,12 @@ class QAEmploeeSeeder extends Seeder
             Employee::insert($chunk);
         }
 
+        $data = [];
+
         // per hour
         $position = $department->positions->where('title','QA Employee per hour')->first();
         info($department->positions);
-        $salary = $position->salary;
+        $salary = $position->salary->first();
         for ($i=1; $i<=10; $i++)
         {
             $employeeSalary = new EmployeeSalary();

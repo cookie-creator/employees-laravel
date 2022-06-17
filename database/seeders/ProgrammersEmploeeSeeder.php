@@ -20,15 +20,16 @@ class ProgrammersEmploeeSeeder extends Seeder
         // Team lead 10
         $department = Department::where('title', 'Programmers')->first();
         $position = $department->positions->where('title','Team lead')->first();
-        $salary = $position->salary;
-
-        $employeeSalary = new EmployeeSalary();
-        $employeeSalary->amount = '4000';
-        $employeeSalary->salary_types_id = 2;
-        $employeeSalary->save();
+        $salary = $position->salary->first();
+        $data = [];
 
         for ($i=1; $i<=10; $i++)
         {
+            $employeeSalary = new EmployeeSalary();
+            $employeeSalary->amount = '4000';
+            $employeeSalary->salary_types_id = 2;
+            $employeeSalary->save();
+
             $data[] = [
                 'firstname' => 'Antony'.$i,
                 'surname' => 'Starr'.$i,
@@ -46,18 +47,18 @@ class ProgrammersEmploeeSeeder extends Seeder
         {
             Employee::insert($chunk);
         }
+        $data = [];
 
         // senior dev monthly
         $position = $department->positions->where('title','Senior dev')->first();
-        $salary = $position->salary;
-
-        $employeeSalary = new EmployeeSalary();
-        $employeeSalary->amount = '3000';
-        $employeeSalary->salary_types_id = 2;
-        $employeeSalary->save();
-
+        $salary = $position->salary->first();
         for ($i=1; $i<=50; $i++)
         {
+            $employeeSalary = new EmployeeSalary();
+            $employeeSalary->amount = '3000';
+            $employeeSalary->salary_types_id = 2;
+            $employeeSalary->save();
+
             $data[] = [
                 'firstname' => 'Lazaro'.$i,
                 'surname' => 'Alonso'.$i,
@@ -74,18 +75,18 @@ class ProgrammersEmploeeSeeder extends Seeder
         {
             Employee::insert($chunk);
         }
+        $data = [];
 
         // senior dev per hour
         $position = $department->positions->where('title','Senior dev per hour')->first();
-        $salary = $position->salary;
-
-        $employeeSalary = new EmployeeSalary();
-        $employeeSalary->amount = '400';
-        $employeeSalary->salary_types_id = 1;
-        $employeeSalary->save();
-
+        $salary = $position->salary->first();
         for ($i=1; $i<=50; $i++)
         {
+            $employeeSalary = new EmployeeSalary();
+            $employeeSalary->amount = '400';
+            $employeeSalary->salary_types_id = 1;
+            $employeeSalary->save();
+
             $data[] = [
                 'firstname' => 'Tomer'.$i,
                 'surname' => 'Capone'.$i,
@@ -102,18 +103,18 @@ class ProgrammersEmploeeSeeder extends Seeder
         {
             Employee::insert($chunk);
         }
+        $data = [];
 
         // middle monthly
         $position = $department->positions->where('title','Middle dev')->first();
-        $salary = $position->salary;
-
-        $employeeSalary = new EmployeeSalary();
-        $employeeSalary->amount = '2500';
-        $employeeSalary->salary_types_id = 2;
-        $employeeSalary->save();
-
+        $salary = $position->salary->first();
         for ($i=1; $i<=100; $i++)
         {
+            $employeeSalary = new EmployeeSalary();
+            $employeeSalary->amount = '2500';
+            $employeeSalary->salary_types_id = 2;
+            $employeeSalary->save();
+
             $data[] = [
                 'firstname' => 'Jack'.$i,
                 'surname' => 'Quaid'.$i,
@@ -130,18 +131,18 @@ class ProgrammersEmploeeSeeder extends Seeder
         {
             Employee::insert($chunk);
         }
+        $data = [];
 
         // middle per hour
         $position = $department->positions->where('title','Middle dev per hour')->first();
-        $salary = $position->salary;
-
-        $employeeSalary = new EmployeeSalary();
-        $employeeSalary->amount = '250';
-        $employeeSalary->salary_types_id = 1;
-        $employeeSalary->save();
-
+        $salary = $position->salary->first();
         for ($i=1; $i<=100; $i++)
         {
+            $employeeSalary = new EmployeeSalary();
+            $employeeSalary->amount = '250';
+            $employeeSalary->salary_types_id = 1;
+            $employeeSalary->save();
+
             $data[] = [
                 'firstname' => 'Jensen'.$i,
                 'surname' => 'Ackles'.$i,
@@ -158,18 +159,18 @@ class ProgrammersEmploeeSeeder extends Seeder
         {
             Employee::insert($chunk);
         }
+        $data = [];
 
         // Junior monthly
         $position = $department->positions->where('title','Junior dev')->first();
-        $salary = $position->salary;
-
-        $employeeSalary = new EmployeeSalary();
-        $employeeSalary->amount = '1500';
-        $employeeSalary->salary_types_id = 2;
-        $employeeSalary->save();
-
+        $salary = $position->salary->first();
         for ($i=1; $i<=400; $i++)
         {
+            $employeeSalary = new EmployeeSalary();
+            $employeeSalary->amount = '1500';
+            $employeeSalary->salary_types_id = 2;
+            $employeeSalary->save();
+
             $data[] = [
                 'firstname' => 'Simon'.$i,
                 'surname' => 'John'.$i,
@@ -186,18 +187,18 @@ class ProgrammersEmploeeSeeder extends Seeder
         {
             Employee::insert($chunk);
         }
+        $data = [];
 
         // Junior per hour
         $position = $department->positions->where('title','Junior dev per hour')->first();
-        $salary = $position->salary;
-
-        $employeeSalary = new EmployeeSalary();
-        $employeeSalary->amount = '100';
-        $employeeSalary->salary_types_id = 1;
-        $employeeSalary->save();
-
+        $salary = $position->salary->first();
         for ($i=1; $i<=400; $i++)
         {
+            $employeeSalary = new EmployeeSalary();
+            $employeeSalary->amount = '100';
+            $employeeSalary->salary_types_id = 1;
+            $employeeSalary->save();
+
             $data[] = [
                 'firstname' => 'Nick'.$i,
                 'surname' => 'Frost'.$i,

@@ -51,5 +51,10 @@ class ProgrammersDepartmentPerHourSeeder extends Seeder
         $juniorSalary->title = 'Junior per hour Salary';
         $juniorSalary->description = 'Junior per hour Salary description';
         $junior->salary()->save($juniorSalary);
+
+        $juniorSalary = new Salary();
+        $juniorSalary->title = 'Junior per hour Salary2';
+        $juniorSalary->description = 'Junior per hour Salary description2';
+        $junior->salary()->save($juniorSalary);
     }
 }

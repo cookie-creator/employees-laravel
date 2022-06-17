@@ -19,8 +19,8 @@ class SEOEmployeeSeeder extends Seeder
     {
         // SEO
         $seoDepartment = Department::where('title', 'SEO')->first();
-        $seoManagerPosition = $seoDepartment->positions->where('title','SEO Manager')->first();
-        $seoManagerSalary = $seoManagerPosition->salary;
+        $seoManagerPosition = $seoDepartment->positions->where('title', 'SEO Manager')->first();
+        $seoManagerSalary = $seoManagerPosition->salary->first();
 
         $salary = new EmployeeSalary();
         $salary->amount = '5000';
@@ -55,24 +55,13 @@ class SEOEmployeeSeeder extends Seeder
         $seoManagerEmployee->save();
 
         $seoManagerPosition = $seoDepartment->positions->where('title','SEO Employee')->first();
-        $seoManagerSalary = $seoManagerPosition->salary;
+        $seoManagerSalary = $seoManagerPosition->salary->first();
         for ($i=1; $i<=10; $i++)
         {
             $salary = new EmployeeSalary();
             $salary->amount = '3000';
             $salary->salary_types_id = 2;
             $salary->save();
-
-            /*$employee = new Employee();
-            $employee->firstname = 'John'.$i;
-            $employee->surname = 'Doe'.$i;
-            $employee->lastname = 'Emploeewitch';
-            $employee->date_of_birth = "1982-06-14";
-            $employee->department_id = $seoDepartment->id;
-            $employee->position_id = $seoManagerPosition->id;
-            $employee->salary_id = $seoManagerSalary->id;
-            $employee->employee_salary_id = $salary->id;
-            $employee->save();*/
 
             $data[] = [
                 'firstname' => 'John'.$i,

@@ -6,12 +6,13 @@ use App\Http\Requests\CreateEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
 use App\Models\Department;
 use App\Models\Employee;
+use App\Models\EmployeeSalary;
 use App\Models\Position;
 use App\Models\Salary;
 use App\Models\SalaryTypes;
 use Illuminate\Http\Request;
 
-class EmployesController extends Controller
+class EmployeesController extends Controller
 {
     public function __contruct()
     {
@@ -36,7 +37,7 @@ class EmployesController extends Controller
 
     public function edit(Request $request)
     {
-        $employee = Employee::find($request->id);
+        $employee = Employee::find($request->employee_id);
         $departments = Department::all();
         $positions = Position::all();
         $salaries = Salary::all();
@@ -59,7 +60,7 @@ class EmployesController extends Controller
     {
         $request->validated();
 
-        $employee = Employee::find($request->id);
+        $employee = Employee::find($request->employee_id);
 
         $employee->firstname = $request['firstname'];
         $employee->surname = $request['surname'];
@@ -69,10 +70,14 @@ class EmployesController extends Controller
         $employee->department_id = $request['department'];
         $employee->position_id = $request['position'];
         $employee->salary_id = $request['salary'];
-        $employee->salary->salary_types = $request['salaryType'];
+
+        $employee->employee_salary->amount = $request['salaryAmount'];
+        $employee->employee_salary->salary_types_id = $request['salaryType'];
+        $employee->employee_salary->save();
+
         $employee->save();
 
-        return redirect()->route('employee.edit', ['id' => $employee->id]);
+        return redirect()->route('employee.edit', ['employee_id' => $employee->id]);
     }
 
 
@@ -80,8 +85,12 @@ class EmployesController extends Controller
     {
         $request->validated();
 
-        $employee = new Employee();
+        $employeeSalary = new EmployeeSalary();
+        $employeeSalary->amount = $request['salaryAmount'];
+        $employeeSalary->salary_types_id = $request['salaryType'];
+        $employeeSalary->save();
 
+        $employee = new Employee();
         $employee->firstname = $request['firstname'];
         $employee->surname = $request['surname'];
         $employee->lastname = $request['lastname'];
@@ -90,9 +99,19 @@ class EmployesController extends Controller
         $employee->department_id = $request['department'];
         $employee->position_id = $request['position'];
         $employee->salary_id = $request['salary'];
-        $employee->salary->salary_types = $request['salaryType'];
+        $employee->employee_salary_id = $employeeSalary->id;
         $employee->save();
 
-        return redirect()->route('employee.edit', ['id' => $employee->id]);
+        return redirect()->route('employee.edit', ['employee_id' => $employee->id]);
+    }
+
+    public function destroy(Request $request)
+    {
+        $employee = Employee::find($request->employee_id);
+        $id = $employee->employee_salary_id;
+        $employee->delete();
+        EmployeeSalary::find($id)->delete();
+
+        return redirect()->route('employees');
     }
 }

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex justify-between items-center">
-            <h2 class="text-2xl font-light text-gray-500">Employes</h2>
+            <h2 class="text-2xl font-light text-gray-500">Employees</h2>
             <a href="{{ route('employee.create') }}" class="py-2 px-3 text-white text-sm bg-emerald-500 hover:bg-emerald-600 rounded-lg">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 -mt-1 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
@@ -70,7 +70,7 @@
                                 </td>
                                 <td class="p-3 text-sm text-gray-700">
                                     <div class="">
-                                        <a href="{{ route('employee.edit', ['id' => $employee->id]) }}" class="text-sm text-gray-800 hover:text-blue-500 py-2">
+                                        <a href="{{ route('employee.edit', ['employee_id' => $employee->id]) }}" class="text-sm text-gray-800 hover:text-blue-500 py-2">
                                             {{ $employee->fullName }}
                                         </a>
                                     </div>
@@ -91,7 +91,7 @@
                                 </td>
                                 <td class="p-3 text-sm text-gray-700">
                                     <div class="">
-                                        <a href="{{ route('employee.delete', ['id' => $employee->id]) }}" class="inline-block w-100 py-1 px-2 text-sm text-white bg-red-500 hover:bg-red-890 rounded-md">
+                                        <a href="{{ route('employee.destroy', ['employee_id' => $employee->id]) }}" class="inline-block w-100 py-1 px-2 text-sm text-white bg-red-500 hover:bg-red-890 rounded-md">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 -mt-1 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                             </svg>
@@ -116,11 +116,11 @@
                 let department = $(this).find(":selected").val();
 
                 if (department == 0) {
-                    window.location = window.location.origin + '/employes';
+                    window.location = window.location.origin + '/employees';
                     return;
                 }
 
-                window.location = window.location.origin + '/employes/' + department;
+                window.location = window.location.origin + '/employees/' + department;
             });
 
             $('#onpage').change(function (){
@@ -133,9 +133,9 @@
             let department = $('#department').find(":selected").val();
 
             if (department == 0) {
-                baseUrl = window.location.origin + '/employes';
+                baseUrl = window.location.origin + '/employees';
             } else {
-                baseUrl = window.location.origin + '/employes/' + department;
+                baseUrl = window.location.origin + '/employees/' + department;
             }
 
             page = getParams('page');

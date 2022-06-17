@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h2 class="text-2xl font-light text-gray-500">{{ __('Salaries') }}</span></h2>
-            <a href="{{ route('position.create') }}" class="py-2 px-3 text-white text-sm bg-emerald-500 hover:bg-emerald-600 rounded-lg">
+            <a href="{{ route('salary.create') }}" class="py-2 px-3 text-white text-sm bg-emerald-500 hover:bg-emerald-600 rounded-lg">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 -mt-1 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
                 </svg>
@@ -23,6 +23,7 @@
                             <th class="p-3 text-sm font-light tracking-wide text-left">Department</th>
                             <th class="p-3 text-sm font-light tracking-wide text-left">Position</th>
                             <th class="p-3 text-sm font-light tracking-wide text-left">Salary</th>
+                            <th class="p-3 text-sm font-light tracking-wide text-left"></th>
                         </tr>
                         </thead>
                         <tbody>
