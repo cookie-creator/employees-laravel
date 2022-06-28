@@ -33,8 +33,7 @@ class ImportService implements ImportServiceInterface
      */
     public function importSalaryTypes($salary_types)
     {
-        foreach ($salary_types->salary_type as $types)
-        {
+        foreach ($salary_types->salary_type as $types) {
             SalaryTypes::insertOrIgnore([
                 ['id' => (string)$types->id, 'title' => (string)$types->title, 'type' => (string)$types->type],
             ]);
@@ -46,37 +45,30 @@ class ImportService implements ImportServiceInterface
      */
     public function importDepartments($departments)
     {
-        foreach ($departments->department as $department)
-        {
+        foreach ($departments->department as $department) {
             $newDepartment = new Department();
             $newDepartment->title = (string)$department->title;
             $newDepartment->description = (string)$department->description;
             $newDepartment->save();
 
-            if ($department->positions->position !== null)
-            {
-                foreach ($department->positions->position as $position)
-                {
+            if ($department->positions->position !== null) {
+                foreach ($department->positions->position as $position) {
                     $newPosition = new Position();
                     $newPosition->title = (string)$position->title;
                     $newPosition->description = (string)$position->description;
                     $newPosition->department_id = $newDepartment->id;
                     $newPosition->save();
 
-                    if ($position->salaries->salary !== null)
-                    {
-                        foreach ($position->salaries->salary as $salary)
-                        {
+                    if ($position->salaries->salary !== null) {
+                        foreach ($position->salaries->salary as $salary) {
                             $newSalary = new Salary();
                             $newSalary->title = (string)$salary->title;
                             $newSalary->description = (string)$salary->description;;
                             $newSalary->position_id = $newPosition->id;
                             $newSalary->save();
 
-                            if ($salary->employees->employee !== null)
-                            {
-                                foreach ($salary->employees->employee as $employee)
-                                {
+                            if ($salary->employees->employee !== null) {
+                                foreach ($salary->employees->employee as $employee) {
                                     $employeeSalary = new EmployeeSalary();
                                     $employeeSalary->amount = (string)$employee->employee_salary->amount;
                                     $employeeSalary->salary_types_id = (string)$employee->employee_salary->salary_types_id;
@@ -99,13 +91,5 @@ class ImportService implements ImportServiceInterface
                 }
             }
         }
-    }
-
-    /**
-     * @param array $employees
-     */
-    public function importEmployees($employees)
-    {
-        dump(__FUNCTION__);
     }
 }

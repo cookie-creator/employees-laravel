@@ -22,8 +22,7 @@ class DepartmentsController extends Controller
         $employees = Employee::where('department_id', $request->department_id)
             ->orderBy('department_id', 'asc')
             ->orderBy('firstname', 'asc')
-            //->cursorPaginate(15);
-            ->paginate($perPage = $onpage, $columns = ['*'], $pageName = 'page');
+            ->paginate($onpage, ['*'], 'page');
 
         $employees->appends(['onpage' => $onpage]);
 
@@ -33,7 +32,7 @@ class DepartmentsController extends Controller
         return view('pages.employees', compact(['employees', 'departments', 'selectedDepartment', 'onpage']));
     }
 
-    public function list(Request $request)
+    public function list()
     {
         $departments = Department::all();
 
@@ -44,8 +43,7 @@ class DepartmentsController extends Controller
     {
         $department = Department::find($request->department_id);
 
-        $canDelete = ($department->positions->count() > 0 || Employee::where('department_id',$department->id)->first() !== null)
-            ? false : true;
+        $canDelete = !(($department->positions->count() > 0 || Employee::where('department_id', $department->id)->first() !== null));
 
         return view('pages.department-edit', compact(['department', 'canDelete']));
     }

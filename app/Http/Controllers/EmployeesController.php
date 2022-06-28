@@ -26,7 +26,7 @@ class EmployeesController extends Controller
         $employees = Employee::
             orderBy('department_id', 'asc')
             ->orderBy('firstname', 'asc')
-            ->paginate($perPage = $onpage, $columns = ['*'], $pageName = 'page');
+            ->paginate($onpage, ['*'], 'page');
 
         $departments = Department::all();
 
