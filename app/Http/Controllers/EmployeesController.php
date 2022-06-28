@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 
 class EmployeesController extends Controller
 {
-    public function __contruct()
+    public function __construct()
     {
 
     }

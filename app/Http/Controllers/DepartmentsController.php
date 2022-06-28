@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class DepartmentsController extends Controller
 {
-    public function __contruct()
+    public function __construct()
     {
 
     }
