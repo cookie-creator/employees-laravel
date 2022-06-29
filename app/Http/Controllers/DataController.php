@@ -4,15 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Adapters\XMLFileAdapter;
 use App\Services\ImportService;
+use App\Services\XMLservice;
 use Illuminate\Http\Request;
 
 class DataController extends Controller
 {
-    public function __construct()
-    {
-
-    }
-
     public function index()
     {
         return view('pages.data');
@@ -25,11 +21,11 @@ class DataController extends Controller
         return view('pages.data', compact('imported'));
     }
 
-    public function export(Request $request)
+    public function export(Request $request, XMLservice $xmlService)
     {
-        XMLFileAdapter::createXML();
+        $xmlService->createXML();
 
-        $path_to_xml = config('app.url') . '/storage/files/export.xml';
+        $path_to_xml = $xmlService->getPathToXmlFile();
 
         return view('pages.data', compact('path_to_xml'));
     }
