@@ -10,50 +10,76 @@ use App\Models\EmployeeSalary;
 use App\Models\Position;
 use App\Models\Salary;
 use App\Models\SalaryTypes;
+use App\Services\DepartmentService;
+use App\Services\PositionsService;
+use App\Services\SalariesService;
+use App\Services\SalaryTypesService;
 use Illuminate\Http\Request;
 
 class EmployeesController extends Controller
 {
-    public function __contruct()
-    {
+    private DepartmentService $departmentService;
+    private PositionsService $positionsService;
+    private SalariesService $salariesService;
+    private SalaryTypesService $salaryTypesService;
 
+    public function __construct(DepartmentService $departmentService,
+                                PositionsService $positionsService,
+                                SalariesService $salariesService,
+                                SalaryTypesService $salaryTypesService)
+    {
+        $this->departmentService = $departmentService;
+        $this->positionsService = $positionsService;
+        $this->salariesService = $salariesService;
+        $this->salaryTypesService = $salaryTypesService;
     }
 
     public function index(Request $request)
     {
         $onpage = ($request->onpage > 0) ? $request->onpage : 10;
 
-        $employees = Employee::
-            orderBy('department_id', 'asc')
+        $employees = Employee::orderBy('department_id', 'asc')
             ->orderBy('firstname', 'asc')
-            ->paginate($perPage = $onpage, $columns = ['*'], $pageName = 'page');
+            ->paginate($onpage, ['*'], 'page');
 
-        $departments = Department::all();
+        $departments = $this->departmentService->getDeparments();
 
         $employees->appends(['onpage' => $onpage]);
 
-        return view('pages.employees', compact(['employees', 'departments', 'onpage']));
+        return view('pages.employees')
+            ->with($employees)
+            ->with($departments)
+            ->with($onpage);
     }
 
     public function edit(Request $request)
     {
         $employee = Employee::find($request->employee_id);
-        $departments = Department::all();
-        $positions = Position::all();
-        $salaries = Salary::all();
-        $salaryTypes = SalaryTypes::all();
+        $departments = $this->departmentService->getDeparments();
+        $positions = $this->positionsService->getPositions();
+        $salaries = $this->salariesService->getSalaries();
+        $salaryTypes = $this->salaryTypesService->getSalaryTypes();
 
-        return view('pages.employee', compact(['employee', 'departments', 'positions', 'salaries', 'salaryTypes']));
+        return view('pages.employee')
+            ->with($employee)
+            ->with($departments)
+            ->with($positions)
+            ->with($salaries)
+            ->with($salaryTypes);
     }
 
     public function create()
     {
-        $departments = Department::all();
-        $positions = Position::all();
-        $salaries = Salary::all();
-        $salaryTypes = SalaryTypes::all();
+        $departments = $this->departmentService->getDeparments();
+        $positions = $this->positionsService->getPositions();
+        $salaries = $this->salariesService->getSalaries();
+        $salaryTypes = $this->salaryTypesService->getSalaryTypes();
 
-        return view('pages.employee-create', compact(['departments', 'positions', 'salaries', 'salaryTypes']));
+        return view('pages.employee-create')
+            ->with($departments)
+            ->with($positions)
+            ->with($salaries)
+            ->with($salaryTypes);
     }
 
     public function update(UpdateEmployeeRequest $request)

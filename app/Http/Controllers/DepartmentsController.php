@@ -6,13 +6,16 @@ use App\Http\Requests\CreateDepartmentRequest;
 use App\Http\Requests\UpdateDepartmentRequest;
 use App\Models\Department;
 use App\Models\Employee;
+use App\Services\DepartmentService;
 use Illuminate\Http\Request;
 
 class DepartmentsController extends Controller
 {
-    public function __contruct()
-    {
+    private DepartmentService $departmentService;
 
+    public function __construct(DepartmentService $departmentService)
+    {
+        $this->departmentService = $departmentService;
     }
 
     public function index(Request $request)
@@ -22,43 +25,40 @@ class DepartmentsController extends Controller
         $employees = Employee::where('department_id', $request->department_id)
             ->orderBy('department_id', 'asc')
             ->orderBy('firstname', 'asc')
-            //->cursorPaginate(15);
-            ->paginate($perPage = $onpage, $columns = ['*'], $pageName = 'page');
+            ->paginate($onpage, ['*'], 'page');
 
         $employees->appends(['onpage' => $onpage]);
-
-        $departments = Department::all();
+        $departments = $this->departmentService->getDeparments();
         $selectedDepartment = $request->department_id;
 
-        return view('pages.employees', compact(['employees', 'departments', 'selectedDepartment', 'onpage']));
+        return view('pages.employees')
+            ->with($employees)
+            ->with($departments)
+            ->with($selectedDepartment)
+            ->with($onpage);
     }
 
-    public function list(Request $request)
+    public function list()
     {
-        $departments = Department::all();
+        $departments = $this->departmentService->getDeparments();
 
         return view('pages.departments', compact(['departments']));
     }
 
     public function edit(Request $request)
     {
-        $department = Department::find($request->department_id);
+        $department = $this->departmentService->getDepartment($request->department_id);
 
-        $canDelete = ($department->positions->count() > 0 || Employee::where('department_id',$department->id)->first() !== null)
-            ? false : true;
+        $canDelete = !(($department->positions->count() > 0 || Employee::where('department_id', $department->id)->first()));
 
         return view('pages.department-edit', compact(['department', 'canDelete']));
     }
 
     public function update(UpdateDepartmentRequest $request)
     {
-        $request->validated();
+        $department = $this->departmentService->getDepartment($request->department_id);
 
-        $department = Department::find($request->department_id);
-
-        $department->title = $request['title'];
-        $department->description = $request['description'];
-        $department->save();
+        $department->update($request->validated());
 
         return redirect()->route('department.edit', ['department_id' => $department->id]);
     }
@@ -73,7 +73,6 @@ class DepartmentsController extends Controller
         $request->validated();
 
         $department = new Department();
-
         $department->title = $request['title'];
         $department->description = $request['description'];
         $department->save();
@@ -83,7 +82,7 @@ class DepartmentsController extends Controller
 
     public function destroy(Request $request)
     {
-        Department::find($request->department_id)->delete();
+        $this->departmentService->destroyDepartment($request->department_id);
 
         return redirect()->route('departments');
     }
